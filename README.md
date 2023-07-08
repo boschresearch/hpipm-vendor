@@ -1,4 +1,5 @@
 [![License](https://img.shields.io/badge/License-Apache%202-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-BSD_2--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
 
 # The hpipm-vendor repository
 A vendor package for hpipm. In detail, this repository contains one CMake package:
