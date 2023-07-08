@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="2">
+  <name>hpipm</name>
+  <version>0.1.3</version>
+  <description>HPIPM is a high-performance interior-point method solver for dense, optimal control- and tree-structured convex quadratic programs. It provides efficient implementations of dense and structure-exploiting algorithms to solve small to medium scale problems arising in model predictive control and embedded optimization in general and it relies on the high-performance linear algebra package BLASFEO.</description>
+
+  <author>Gianluca Frison</author>
+
+  <maintainer email="niels.vanduijkeren@de.bosch.com">Niels van Duijkeren</maintainer>
+  <license>BSD-2-Clause</license>
+  
+  <url type="repository">https://github.com/boschresearch/hpipm-vendor</url>
+  <url type="repository">https://github.com/giaf/hpipm</url>
+
+  <buildtool_depend>cmake</buildtool_depend>
+
+  <depend>blasfeo</depend>
+
+  <export>
+    <build_type>cmake</build_type>
+  </export>
+</package>
