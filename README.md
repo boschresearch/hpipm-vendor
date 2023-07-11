@@ -16,7 +16,17 @@ The software is not ready for production use. It has neither been developed nor 
 
 ## Requirements, how to build, test, install, use, etc.
 
-Clone the repository into a ROS workspace and build it using [colcon](https://colcon.readthedocs.io/).
+Clone repository into you ROS workspace:
+```bash
+cd <workspace>/src
+git clone https://github.com/boschresearch/blasfeo-vendor.git
+```
+
+clone dependencies:
+```bash
+cd <workspace>/src/blasfeo-vendor
+vcs import < dependencies.repos
+```
 
 
 ## License

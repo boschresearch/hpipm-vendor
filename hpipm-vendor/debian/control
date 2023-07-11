@@ -1,0 +1,13 @@
+Source: hpipm
+Section: misc
+Priority: optional
+Maintainer: Gianluca Frison < gianluca.frison@imtek.uni-freiburg.de>
+Build-Depends: debhelper (>= 9.0.0), blasfeo, cmake
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: hpipm
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, blasfeo
+Description: HPIPM is a high-performance interior-point method solver for dense, optimal control- and tree-structured convex quadratic programs.
+ It provides efficient implementations of dense and structure-exploiting algorithms to solve small to medium scale problems arising in model predictive control and embedded optimization in general and it relies on the high-performance linear algebra package BLASFEO.

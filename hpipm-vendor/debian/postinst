@@ -1,0 +1,36 @@
+#!/bin/bash
+
+if [ "$(uname -m)" = "x86_64" ]; then
+    CPU_INFO="$(cat /proc/cpuinfo)"
+
+    if [ ! -z "$(echo ${CPU_INFO} | grep Intel)" ]; then
+        if [ ! -z "$(echo ${CPU_INFO} | grep avx2)" ]; then
+            TARGET=X64_INTEL_HASWELL
+        elif [ ! -z "$(echo ${CPU_INFO} | grep avx)" ]; then
+            TARGET=X64_INTEL_SANDY_BRIDGE
+        elif [ ! -z "$(echo ${CPU_INFO} | grep ssse3)" ]; then
+            TARGET=X64_INTEL_CORE
+        else
+            TARGET=GENERIC
+        fi
+    elif [ ! -z "$(echo ${CPU_INFO} | grep AMD)" ]; then
+        if [ ! -z "$(echo ${CPU_INFO} | grep avx | grep fma)" ]; then
+            TARGET=X64_AMD_BULLDOZER
+        else
+            TARGET=GENERIC
+        fi
+    else
+        TARGET=GENERIC
+    fi
+
+    if test -f "/opt/hpipm/${TARGET}/lib/libhpipm.a"; then
+        ln -sf /opt/hpipm/${TARGET}/lib/libhpipm.a /usr/lib/libhpipm.a
+    fi
+
+    if test -f "/opt/hpipm/${TARGET}/lib/libhpipm.so"; then
+        ln -sf /opt/hpipm/${TARGET}/lib/libhpipm.so /usr/lib/libhpipm.so
+    fi
+
+    ln -snf /opt/hpipm/${TARGET}/include/hpipm /usr/include/hpipm
+    ln -snf /opt/hpipm/${TARGET}/cmake/*.cmake /usr/cmake/
+fi

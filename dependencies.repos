@@ -1,0 +1,5 @@
+repositories:
+  hpipm-vendor/external/hpipm:
+    type: git
+    url: https://github.com/boschresearch/hpipm.git
+    version: master

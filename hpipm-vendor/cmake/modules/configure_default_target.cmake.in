@@ -1,0 +1,31 @@
+execute_process(
+    COMMAND bash @MULTI_TARGET_BUILD_MODULES@/blasfeo-target-detection.sh
+    OUTPUT_VARIABLE BLASFEO_MACHINE_TARGET
+)
+
+if("${BLASFEO_MACHINE_TARGET}" STREQUAL "")
+    message(STATUS "Target detection failed! ${BLASFEO_MACHINE_TARGET}")
+else()
+    message(STATUS "Configuring default target: ${BLASFEO_MACHINE_TARGET}")
+
+    # Create symlink for library file
+    execute_process(
+        COMMAND ln -nsf 
+        @HPIPM_INSTALL_PREFIX_ABSOLUTE@/${BLASFEO_MACHINE_TARGET}/lib/libhpipm.@LIBFILETYPE@
+        ${CMAKE_INSTALL_PREFIX}/lib/libhpipm.@LIBFILETYPE@
+    )
+
+    # Create symlink for include directory
+    execute_process(
+        COMMAND ln -nsf 
+        @HPIPM_INSTALL_PREFIX_ABSOLUTE@/${BLASFEO_MACHINE_TARGET}/include/hpipm/
+        ${CMAKE_INSTALL_PREFIX}/include/hpipm
+    )
+
+    # Create symlink for cmake directory
+    execute_process(
+        COMMAND ln -nsf 
+        @HPIPM_INSTALL_PREFIX_ABSOLUTE@/${BLASFEO_MACHINE_TARGET}/cmake/*.cmake
+        ${CMAKE_INSTALL_PREFIX}/cmake/
+    )
+endif()
